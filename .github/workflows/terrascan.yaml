@@ -1,0 +1,19 @@
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  terrascan_job:
+    runs-on: ubuntu-latest
+    name: terrascan-action
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Run Terrascan
+        id: terrascan
+        uses: docker://nasirrabbani/terrascan-action:test3
+        with:
+          only_warn: true
+          verbose: true
+          notification_webhook_url: https://6266-103-83-214-125.ngrok.io/v1/api/terrascan
+          notification_webhook_token: ffce1d0d-0f6d-4146-84a3-d961222d1474
+          repo_url: https://github.com/pankajpatil-accurics/symmetrical-fortnight.git
